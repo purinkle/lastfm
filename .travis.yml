@@ -2,6 +2,8 @@ language: ruby
 rvm: 2.3.1
 cache: bundler
 sudo: false
+env:
+  - API_KEY="TEST_API_KEY"
 before_install:
   - "echo '--colour' > ~/.rspec"
   - git config --global user.name 'Travis CI'

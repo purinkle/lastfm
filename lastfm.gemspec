@@ -28,7 +28,12 @@ listening to over an "unusual" time period.
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Lastfm::VERSION
 
+  s.add_dependency "dotenv"
+  s.add_dependency "faraday"
+  s.add_dependency "faraday_middleware"
   s.add_dependency 'rake'
 
   s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency "vcr"
+  s.add_development_dependency "webmock"
 end
