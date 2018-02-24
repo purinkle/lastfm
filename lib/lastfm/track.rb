@@ -9,6 +9,10 @@ module Lastfm
       artist.name
     end
 
+    def date
+      data.fetch("date").fetch("uts")
+    end
+
     def eql?(other)
       self == other
     end

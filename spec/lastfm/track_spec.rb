@@ -15,6 +15,17 @@ module Lastfm
       end
     end
 
+    describe "#timestamp" do
+      it "is 'TEST_TIME'" do
+        data = { "date" => { "uts" => "TEST_TIME" } }
+        track = Track.new(data)
+
+        date = track.date
+
+        expect(date).to eq "TEST_TIME"
+      end
+    end
+
     describe "#eql?" do
       context "when the tracks have the same artist and name" do
         it "is equal" do

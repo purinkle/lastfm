@@ -101,4 +101,24 @@ RSpec.describe "Get Top Tracks" do
       end
     end
   end
+
+  context "when there are duplicates of the same track" do
+    it "only shows the track once" do
+      VCR.use_cassette("recent_tracks/duplicate") do
+        chart = Lastfm::Chart.new(
+          from: Time.at(1_479_316_791),
+          to: Time.at(1_479_316_791),
+          user: "TEST_USER",
+        )
+
+        entries = chart.get
+
+        entry = entries.first
+        expect(entries.count).to eq 1
+        expect(entry.track_name).to eq "TEST_TRACK"
+        expect(entry.artist_name).to eq "TEST_ARTIST"
+        expect(entry.play_count).to eq 1
+      end
+    end
+  end
 end

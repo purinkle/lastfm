@@ -19,7 +19,12 @@ module Lastfm
           "date" => { "uts" => "TEST_TIME_1" },
           "name" => track_name2,
         )
-        tracks = [track2, track1, track1]
+        track3 = Track.new(
+          "artist" => { "#text" => artist_name1 },
+          "date" => { "uts" => "TEST_TIME_2" },
+          "name" => track_name1,
+        )
+        tracks = [track2, track1, track1, track3]
 
         entries = Tracks.new(tracks).to_chart
 

@@ -19,8 +19,12 @@ module Lastfm
       end
     end
 
+    def unique_tracks
+      tracks.uniq { |track| [track.artist_name, track.name, track.date] }
+    end
+
     def play_counts
-      tracks.each_with_object(Hash.new(0)) do |track, play_counts|
+      unique_tracks.each_with_object(Hash.new(0)) do |track, play_counts|
         play_counts[track] += 1
       end
     end
