@@ -49,6 +49,7 @@ http_interactions:
             "track": [
               {
                 "artist": { "#text": "TEST_ARTIST_1" },
+                "date": { "uts": "1_479_316_792" },
                 "name": "TEST_TRACK_1"
               }
             ]

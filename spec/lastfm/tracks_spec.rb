@@ -11,10 +11,12 @@ module Lastfm
         track_name2 = "TEST_TRACK_2"
         track1 = Track.new(
           "artist" => { "#text" => artist_name1 },
+          "date" => { "uts" => "TEST_TIME_1" },
           "name" => track_name1,
         )
         track2 = Track.new(
           "artist" => { "#text" => artist_name2 },
+          "date" => { "uts" => "TEST_TIME_1" },
           "name" => track_name2,
         )
         tracks = [track2, track1, track1]
