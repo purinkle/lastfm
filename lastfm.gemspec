@@ -34,6 +34,7 @@ listening to over an "unusual" time period.
   s.add_dependency 'rake'
 
   s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency "rspec_junit_formatter"
   s.add_development_dependency "vcr"
   s.add_development_dependency "webmock"
 end
