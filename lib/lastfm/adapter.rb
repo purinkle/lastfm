@@ -10,7 +10,13 @@ module Lastfm
     end
 
     def tracks
-      track.map { |track_data| Track.new(track_data) }
+      track.reduce([]) do |memo, track_data|
+        if track_data.fetch("@attr", {}).fetch("nowplaying", false)
+          memo
+        else
+          memo << Track.new(track_data)
+        end
+      end
     end
 
     private
