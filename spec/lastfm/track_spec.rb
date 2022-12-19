@@ -3,6 +3,20 @@ require "spec_helper"
 
 module Lastfm
   RSpec.describe Track do
+    describe ".build" do
+      it "provides a simple way to build a track" do
+        track = Track.build(
+          artist_name: "TEST_ARTIST",
+          track_name: "TEST_TRACK"
+        )
+
+        expect(track).to eq Track.new(
+          "artist" => {"#text" => "TEST_ARTIST"},
+          "name" => "TEST_TRACK"
+        )
+      end
+    end
+
     describe "#artist_name" do
       it "is 'TEST_ARTIST'" do
         artist_name = "TEST_ARTIST"

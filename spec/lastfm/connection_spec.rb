@@ -19,9 +19,9 @@ module Lastfm
 
           expect(recent_tracks).to have_attributes(
             tracks: [
-              Track.new(
-                "artist" => {"#text" => "TEST_ARTIST"},
-                "name" => "TEST_TRACK"
+              Track.build(
+                artist_name: "TEST_ARTIST",
+                track_name: "TEST_TRACK"
               )
             ],
             total_pages: 1

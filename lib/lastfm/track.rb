@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 module Lastfm
   class Track
+    def self.build(artist_name:, track_name:)
+      new(
+        "artist" => {"#text" => artist_name},
+        "name" => track_name
+      )
+    end
+
     def initialize(data)
       @data = data
     end
