@@ -17,14 +17,16 @@ module Lastfm
 
           recent_tracks = connection.get
 
-          expect(recent_tracks).to have_attributes(
-            tracks: [
-              Track.build(
-                artist_name: "TEST_ARTIST",
-                track_name: "TEST_TRACK"
-              )
-            ],
-            total_pages: 1
+          expect(recent_tracks).to eq Adapter.new(
+            "recenttracks" => {
+              "track" => [
+                {
+                  "artist" => {"#text" => "TEST_ARTIST"},
+                  "name" => "TEST_TRACK"
+                }
+              ],
+              "@attr" => {"totalPages" => "1"}
+            }
           )
         end
       end
