@@ -1,6 +1,20 @@
 # frozen_string_literal: true
 module Lastfm
   class Adapter
+    def self.build(tracks:, total_pages:)
+      new(
+        "recenttracks" => {
+          "track" => tracks.map do |track|
+            {
+              "artist" => {"#text" => track[:artist_name]},
+              "name" => track[:track_name]
+            }
+          end,
+          "@attr" => {"totalPages" => total_pages.to_s}
+        }
+      )
+    end
+
     def initialize(data)
       @data = data
     end

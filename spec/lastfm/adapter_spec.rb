@@ -3,6 +3,32 @@ require "spec_helper"
 
 module Lastfm
   RSpec.describe Adapter do
+    describe ".build" do
+      it "provides a simple way to build a adapter" do
+        adapter = Adapter.build(
+          tracks: [
+            {
+              artist_name: "TEST_ARTIST",
+              track_name: "TEST_TRACK"
+            }
+          ],
+          total_pages: "1"
+        )
+
+        expect(adapter).to eq Adapter.new(
+          "recenttracks" => {
+            "track" => [
+              {
+                "artist" => {"#text" => "TEST_ARTIST"},
+                "name" => "TEST_TRACK"
+              }
+            ],
+            "@attr" => {"totalPages" => "1"}
+          }
+        )
+      end
+    end
+
     describe "#==" do
       context "when the tracks and total pages are the same" do
         it "is equal" do
