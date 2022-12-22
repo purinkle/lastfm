@@ -20,12 +20,8 @@ module Lastfm
       @_adapted_response ||= connection.get
     end
 
-    def adapter
-      Adapter
-    end
-
     def connection(page_number = 1)
-      Connection.new(adapter: adapter, page_number: page_number, query: query)
+      Connection.new(page_number: page_number, query: query)
     end
 
     def first_page

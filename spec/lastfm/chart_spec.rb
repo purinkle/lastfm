@@ -17,12 +17,10 @@ module Lastfm
         to = Time.now
         user = "TEST_USER"
         allow(Connection).to receive(:new).once.with(
-          adapter: Adapter,
           page_number: 1,
           query: query
         ).and_return(connection_1)
         allow(Connection).to receive(:new).once.with(
-          adapter: Adapter,
           page_number: 2,
           query: query
         ).and_return(connection_2)

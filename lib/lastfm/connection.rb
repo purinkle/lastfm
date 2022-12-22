@@ -2,14 +2,13 @@
 
 module Lastfm
   class Connection
-    def initialize(adapter:, page_number: 1, query:)
-      @adapter = adapter
+    def initialize(page_number: 1, query:)
       @page_number = page_number
       @query = query
     end
 
     def get
-      adapter.new(response_body)
+      Adapter.new(response_body)
     end
 
     private
