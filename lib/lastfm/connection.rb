@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Lastfm
   class Connection
     def initialize(adapter:, page_number: 1, query:)
@@ -36,7 +37,7 @@ module Lastfm
         method: "user.getrecenttracks",
         page: page_number,
         to: to,
-        user: user,
+        user: user
       )
     end
 
