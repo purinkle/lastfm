@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "spec_helper"
 
 module Lastfm
@@ -18,20 +19,20 @@ module Lastfm
         allow(Connection).to receive(:new).once.with(
           adapter: Adapter,
           page_number: 1,
-          query: query,
+          query: query
         ).and_return(connection_1)
         allow(Connection).to receive(:new).once.with(
           adapter: Adapter,
           page_number: 2,
-          query: query,
+          query: query
         ).and_return(connection_2)
-        allow(Query).to receive(:new).once.with(from: from, to: to, user: user).
-          and_return(query)
+        allow(Query).to receive(:new).once.with(from: from, to: to, user: user)
+          .and_return(query)
         allow(RecentTracks).to receive(:new).once.with(
           [
             response_1,
-            response_2,
-          ],
+            response_2
+          ]
         ).and_return(recent_tracks)
 
         expect(Chart.new(from: from, to: to, user: user).get).to eq chart
