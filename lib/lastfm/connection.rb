@@ -8,7 +8,7 @@ module Lastfm
     end
 
     def get
-      Adapter.new(response_body)
+      RecentTrackList.new(response_body)
     end
 
     private

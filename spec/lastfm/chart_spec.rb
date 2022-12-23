@@ -8,9 +8,9 @@ module Lastfm
       it "the recent tracks as a chart" do
         chart = []
         from = Time.now
-        response_1 = instance_double("Adapter", total_pages: 2)
+        response_1 = instance_double("RecentTrackList", total_pages: 2)
         connection_1 = instance_double("Connection", get: response_1)
-        response_2 = instance_double("Adapter", total_pages: 2)
+        response_2 = instance_double("RecentTrackList", total_pages: 2)
         connection_2 = instance_double("Connection", get: response_2)
         query = instance_double("Query")
         recent_tracks = instance_double("RecentTracks", to_chart: chart)

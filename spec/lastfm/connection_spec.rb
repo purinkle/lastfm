@@ -17,7 +17,7 @@ module Lastfm
 
           recent_tracks = connection.get
 
-          expect(recent_tracks).to eq Adapter.build(
+          expect(recent_tracks).to eq RecentTrackList.build(
             tracks: [
               {
                 artist_name: "TEST_ARTIST",

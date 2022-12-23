@@ -3,10 +3,10 @@
 require "spec_helper"
 
 module Lastfm
-  RSpec.describe Adapter do
+  RSpec.describe RecentTrackList do
     describe ".build" do
-      it "provides a simple way to build a adapter" do
-        adapter = Adapter.build(
+      it "provides a simple way to build a recent track list" do
+        recent_track_list = RecentTrackList.build(
           tracks: [
             {
               artist_name: "TEST_ARTIST",
@@ -16,7 +16,7 @@ module Lastfm
           total_pages: "1"
         )
 
-        expect(adapter).to eq Adapter.new(
+        expect(recent_track_list).to eq RecentTrackList.new(
           "recenttracks" => {
             "track" => [
               {
@@ -33,28 +33,30 @@ module Lastfm
     describe "#==" do
       context "when the tracks and total pages are the same" do
         it "is equal" do
-          adapter = build_adapter
-          same = build_adapter
+          recent_track_list = build_recent_track_list
+          same = build_recent_track_list
 
-          expect(adapter).to eq same
+          expect(recent_track_list).to eq same
         end
       end
 
       context "when the track is different" do
         it "is not equal" do
-          adapter = build_adapter(tracks: [build_track(track_name: "TRACK")])
-          different = build_adapter(tracks: [build_track(track_name: "OTHER")])
+          recent_track_list =
+            build_recent_track_list(tracks: [build_track(track_name: "TRACK")])
+          different =
+            build_recent_track_list(tracks: [build_track(track_name: "OTHER")])
 
-          expect(adapter).not_to eq different
+          expect(recent_track_list).not_to eq different
         end
       end
 
       context "when the total pages is different" do
         it "is not equal" do
-          adapter = build_adapter(total_pages: 1)
-          different = build_adapter(total_pages: 2)
+          recent_track_list = build_recent_track_list(total_pages: 1)
+          different = build_recent_track_list(total_pages: 2)
 
-          expect(adapter).not_to eq different
+          expect(recent_track_list).not_to eq different
         end
       end
     end
@@ -66,7 +68,7 @@ module Lastfm
           "recenttracks" => {"@attr" => {"totalPages" => total_pages}}
         }
 
-        expect(Adapter.new(data).total_pages).to eq total_pages.to_i
+        expect(RecentTrackList.new(data).total_pages).to eq total_pages.to_i
       end
     end
 
@@ -82,7 +84,7 @@ module Lastfm
           }
         }
 
-        tracks = Adapter.new(data).tracks
+        tracks = RecentTrackList.new(data).tracks
         track = tracks.first
 
         expect(tracks.count).to eq 1
@@ -91,8 +93,8 @@ module Lastfm
       end
     end
 
-    def build_adapter(tracks: [build_track], total_pages: 1)
-      Adapter.new(
+    def build_recent_track_list(tracks: [build_track], total_pages: 1)
+      RecentTrackList.new(
         "recenttracks" => {
           "track" => tracks,
           "@attr" => {"totalPages" => total_pages.to_s}

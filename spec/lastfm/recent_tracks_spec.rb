@@ -8,7 +8,7 @@ module Lastfm
       it "is the tracks converted to a chart" do
         chart = []
         tracks_data = []
-        data = instance_double("Adapter", tracks: tracks_data)
+        data = instance_double("RecentTrackList", tracks: tracks_data)
         tracks = instance_double("Tracks", to_chart: chart)
         allow(Tracks).to receive(:new).once.with(tracks_data).and_return(tracks)
 

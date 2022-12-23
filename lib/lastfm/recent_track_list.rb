@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Lastfm
-  class Adapter
+  class RecentTrackList
     def self.build(tracks:, total_pages:)
       new(
         "recenttracks" => {
