@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "spec_helper"
 
 module Lastfm
@@ -20,9 +21,9 @@ module Lastfm
     describe "#artist_name" do
       it "is 'TEST_ARTIST'" do
         artist_name = "TEST_ARTIST"
-        artist_data = { "#text" => artist_name }
+        artist_data = {"#text" => artist_name}
         artist = instance_double("Artist", name: artist_name)
-        data = { "artist" => artist_data }
+        data = {"artist" => artist_data}
         allow(Artist).to receive(:new).once.with(artist_data).and_return(artist)
 
         expect(Track.new(data).artist_name).to eq artist_name
@@ -31,7 +32,7 @@ module Lastfm
 
     describe "#timestamp" do
       it "is 'TEST_TIME'" do
-        data = { "date" => { "uts" => "TEST_TIME" } }
+        data = {"date" => {"uts" => "TEST_TIME"}}
         track = Track.new(data)
 
         date = track.date
@@ -44,8 +45,8 @@ module Lastfm
       context "when the tracks have the same artist and name" do
         it "is equal" do
           data = {
-            "artist" => { "#text" => "TEST_ARTIST" },
-            "name" => "TEST_TRACK",
+            "artist" => {"#text" => "TEST_ARTIST"},
+            "name" => "TEST_TRACK"
           }
 
           expect(Track.new(data)).to eql Track.new(data)
@@ -55,8 +56,8 @@ module Lastfm
       context "when the tracks have different data" do
         it "is not equal" do
           data = {
-            "artist" => { "#text" => "TEST_ARTIST" },
-            "name" => "TEST_TRACK",
+            "artist" => {"#text" => "TEST_ARTIST"},
+            "name" => "TEST_TRACK"
           }
           different_track = Track.new(data.merge("name" => "OTHER_TRACK"))
 
@@ -70,8 +71,8 @@ module Lastfm
         artist_name = "TEST_ARTIST"
         track_name = "TEST_TRACK"
         data = {
-          "artist" => { "#text" => artist_name },
-          "name" => track_name,
+          "artist" => {"#text" => artist_name},
+          "name" => track_name
         }
 
         expect(Track.new(data).hash).to eq [artist_name, track_name].hash
@@ -81,7 +82,7 @@ module Lastfm
     describe "#name" do
       it "is the initialized track name" do
         track_name = "TEST_TRACK"
-        data = { "name" => track_name }
+        data = {"name" => track_name}
 
         expect(Track.new(data).name).to eq track_name
       end
@@ -91,8 +92,8 @@ module Lastfm
       context "when the tracks have the same artist and name" do
         it "is equal" do
           data = {
-            "artist" => { "#text" => "TEST_ARTIST" },
-            "name" => "TEST_TRACK",
+            "artist" => {"#text" => "TEST_ARTIST"},
+            "name" => "TEST_TRACK"
           }
 
           expect(Track.new(data)).to eq Track.new(data)
@@ -102,8 +103,8 @@ module Lastfm
       context "when the tracks have different data" do
         it "is not equal" do
           data = {
-            "artist" => { "#text" => "TEST_ARTIST" },
-            "name" => "TEST_TRACK",
+            "artist" => {"#text" => "TEST_ARTIST"},
+            "name" => "TEST_TRACK"
           }
           different_track = Track.new(data.merge("name" => "OTHER_TRACK"))
 

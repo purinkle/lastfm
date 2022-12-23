@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "dotenv"
 require "faraday"
 require "faraday_middleware"

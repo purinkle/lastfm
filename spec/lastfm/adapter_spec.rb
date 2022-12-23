@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "spec_helper"
 
 module Lastfm
@@ -62,7 +63,7 @@ module Lastfm
       it "returns the total number of pages" do
         total_pages = "0"
         data = {
-          "recenttracks" => { "@attr" => { "totalPages" => total_pages } },
+          "recenttracks" => {"@attr" => {"totalPages" => total_pages}}
         }
 
         expect(Adapter.new(data).total_pages).to eq total_pages.to_i
@@ -76,9 +77,9 @@ module Lastfm
         data = {
           "recenttracks" => {
             "track" => [
-              { "artist" => { "#text" => artist_name }, "name" => track_name },
-            ],
-          },
+              {"artist" => {"#text" => artist_name}, "name" => track_name}
+            ]
+          }
         }
 
         tracks = Adapter.new(data).tracks

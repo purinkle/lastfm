@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Lastfm
   class Track
     def self.build(artist_name:, track_name:)

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "spec_helper"
 
 RSpec.describe "Get Top Tracks" do
@@ -8,7 +9,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER",
+          user: "TEST_USER"
         )
 
         expect(chart.get).to be_empty
@@ -22,7 +23,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER",
+          user: "TEST_USER"
         )
         entries = chart.get
         entry = entries.first
@@ -41,7 +42,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER",
+          user: "TEST_USER"
         )
         entries = chart.get
         entry = entries.first
@@ -60,14 +61,14 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER",
+          user: "TEST_USER"
         )
         entries = chart.get
 
         expect(entries.count).to eq 2
         [
           ["TEST_ARTIST_1", 2, "TEST_TRACK_1"],
-          ["TEST_ARTIST_2", 1, "TEST_TRACK_2"],
+          ["TEST_ARTIST_2", 1, "TEST_TRACK_2"]
         ].each_with_index do |(artist_name, play_count, track_name), index|
           expect(entries[index].artist_name).to eq artist_name
           expect(entries[index].play_count).to eq play_count
@@ -84,14 +85,14 @@ RSpec.describe "Get Top Tracks" do
           chart = Lastfm::Chart.new(
             from: Time.at(1_479_316_791),
             to: Time.at(1_479_316_791),
-            user: "TEST_USER",
+            user: "TEST_USER"
           )
           entries = chart.get
 
           expect(entries.count).to eq 2
           [
             ["TEST_ARTIST_1", 2, "TEST_TRACK_1"],
-            ["TEST_ARTIST_2", 1, "TEST_TRACK_2"],
+            ["TEST_ARTIST_2", 1, "TEST_TRACK_2"]
           ].each_with_index do |(artist_name, play_count, track_name), index|
             expect(entries[index].artist_name).to eq artist_name
             expect(entries[index].play_count).to eq play_count
@@ -108,7 +109,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER",
+          user: "TEST_USER"
         )
 
         entries = chart.get
@@ -128,7 +129,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER",
+          user: "TEST_USER"
         )
 
         entries = chart.get

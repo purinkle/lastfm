@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Lastfm
   class Entry
     attr_reader :play_count
