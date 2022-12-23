@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 module Lastfm
   class Chart
     def initialize(from:, to:, user:)
