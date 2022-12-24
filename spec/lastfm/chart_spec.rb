@@ -28,8 +28,7 @@ module Lastfm
           page_number: 2,
           query: query
         ).and_return(connection_2)
-        allow(Query).to receive(:new).once.with(from: from, to: to, user: user)
-          .and_return(query)
+        allow(Query).to receive(:new).once.with(user: user).and_return(query)
         allow(RecentTracks).to receive(:new).once.with(
           [
             response_1,

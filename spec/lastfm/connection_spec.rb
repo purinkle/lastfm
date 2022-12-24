@@ -7,13 +7,7 @@ module Lastfm
     describe "#recent_tracks" do
       it "fetches a list of all recently played tracks that match the query" do
         VCR.use_cassette("recent_tracks/one") do
-          connection = Connection.new(
-            query: Query.new(
-              user: "TEST_USER",
-              from: Time.new(2016, 11, 16, 17, 19, 51).to_i,
-              to: Time.new(2016, 11, 16, 17, 19, 51).to_i
-            )
-          )
+          connection = Connection.new(query: Query.new(user: "TEST_USER"))
 
           from = Time.new(2016, 11, 16, 17, 19, 51)
           to = Time.new(2016, 11, 16, 17, 19, 51)

@@ -39,7 +39,7 @@ module Lastfm
     end
 
     def query
-      @_query ||= Query.new(from: from, to: to, user: user)
+      @_query ||= Query.new(user: user)
     end
 
     def recent_tracks
