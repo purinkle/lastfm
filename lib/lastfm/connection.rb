@@ -7,8 +7,11 @@ module Lastfm
       @query = query
     end
 
-    def get
-      RecentTrackList.new(response_body)
+    def recent_tracks(period)
+      RecentTrackList.new(response_body(
+        from: period.min.to_i,
+        to: period.max.to_i
+      ))
     end
 
     private
@@ -22,11 +25,7 @@ module Lastfm
       end
     end
 
-    def from
-      query.from
-    end
-
-    def response
+    def response(from:, to:)
       connection.get(
         "/2.0/",
         api_key: ENV["API_KEY"],
@@ -40,12 +39,8 @@ module Lastfm
       )
     end
 
-    def response_body
-      response.body
-    end
-
-    def to
-      query.to
+    def response_body(from:, to:)
+      response(from: from, to: to).body
     end
 
     def user

@@ -17,7 +17,7 @@ module Lastfm
     attr_reader :from, :to, :user
 
     def adapted_response
-      @_adapted_response ||= connection.get
+      @_adapted_response ||= connection.recent_tracks(from..to)
     end
 
     def connection(page_number = 1)
@@ -29,7 +29,9 @@ module Lastfm
     end
 
     def other_pages
-      (2..total_pages).map { |page_number| connection(page_number).get }
+      (2..total_pages).map do |page_number|
+        connection(page_number).recent_tracks(from..to)
+      end
     end
 
     def pages
