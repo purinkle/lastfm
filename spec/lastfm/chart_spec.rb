@@ -22,7 +22,7 @@ module Lastfm
           page_number: 1,
           query: query
         ).and_return(connection_1)
-        allow(connection_2).to receive(:recent_tracks).with(from..to)
+        allow(connection_2).to receive(:recent_tracks).with(from..to, 2)
           .and_return(response_2)
         allow(Connection).to receive(:new).once.with(
           page_number: 2,

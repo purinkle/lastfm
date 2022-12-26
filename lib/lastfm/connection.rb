@@ -7,8 +7,9 @@ module Lastfm
       @query = query
     end
 
-    def recent_tracks(period)
+    def recent_tracks(period, page_number = 1)
       RecentTrackList.new(response_body(
+        page: page_number,
         from: period.min.to_i,
         to: period.max.to_i
       ))
@@ -25,7 +26,7 @@ module Lastfm
       end
     end
 
-    def response(from:, to:)
+    def response(page:, from:, to:)
       connection.get(
         "/2.0/",
         api_key: ENV["API_KEY"],
@@ -33,14 +34,14 @@ module Lastfm
         from: from,
         limit: 200,
         method: "user.getrecenttracks",
-        page: page_number,
+        page: page,
         to: to,
         user: user
       )
     end
 
-    def response_body(from:, to:)
-      response(from: from, to: to).body
+    def response_body(page:, from:, to:)
+      response(page: page, from: from, to: to).body
     end
 
     def user

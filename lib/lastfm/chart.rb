@@ -30,7 +30,7 @@ module Lastfm
 
     def other_pages
       (2..total_pages).map do |page_number|
-        connection(page_number).recent_tracks(from..to)
+        connection(page_number).recent_tracks(from..to, page_number)
       end
     end
 

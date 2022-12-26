@@ -14,7 +14,7 @@ module Lastfm
 
           from = Time.new(2016, 11, 16, 17, 19, 51)
           to = Time.new(2016, 11, 16, 17, 19, 51)
-          recent_tracks = connection.recent_tracks(from..to)
+          recent_tracks = connection.recent_tracks(from..to, 2)
 
           expect(recent_tracks).to eq RecentTrackList.build(
             tracks: [
