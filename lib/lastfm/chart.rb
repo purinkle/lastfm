@@ -21,7 +21,7 @@ module Lastfm
     end
 
     def connection(page_number = 1)
-      Connection.new(page_number: page_number, query: query)
+      @connection ||= Connection.new(page_number: page_number, query: query)
     end
 
     def first_page
