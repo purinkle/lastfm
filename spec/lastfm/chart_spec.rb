@@ -17,10 +17,8 @@ module Lastfm
         user = "TEST_USER"
         allow(connection).to receive(:recent_tracks).with(from..to)
           .and_return(response_1)
-        allow(Connection).to receive(:new).once.with(
-          page_number: 1,
-          query: query
-        ).and_return(connection)
+        allow(Connection).to receive(:new).once.with(query)
+          .and_return(connection)
         allow(connection).to receive(:recent_tracks).with(from..to, 2)
           .and_return(response_2)
         allow(Query).to receive(:new).once.with(user: user).and_return(query)

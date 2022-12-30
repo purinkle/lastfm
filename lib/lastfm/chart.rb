@@ -20,8 +20,8 @@ module Lastfm
       @_adapted_response ||= connection.recent_tracks(from..to)
     end
 
-    def connection(page_number = 1)
-      @connection ||= Connection.new(page_number: page_number, query: query)
+    def connection
+      @connection ||= Connection.new(query)
     end
 
     def first_page
@@ -30,7 +30,7 @@ module Lastfm
 
     def other_pages
       (2..total_pages).map do |page_number|
-        connection(page_number).recent_tracks(from..to, page_number)
+        connection.recent_tracks(from..to, page_number)
       end
     end
 

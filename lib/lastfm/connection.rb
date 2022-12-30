@@ -2,8 +2,7 @@
 
 module Lastfm
   class Connection
-    def initialize(page_number: 1, query:)
-      @page_number = page_number
+    def initialize(query)
       @query = query
     end
 
@@ -17,7 +16,7 @@ module Lastfm
 
     private
 
-    attr_reader :adapter, :page_number, :query
+    attr_reader :adapter, :query
 
     def connection
       Faraday.new(url: "http://ws.audioscrobbler.com") do |faraday|
