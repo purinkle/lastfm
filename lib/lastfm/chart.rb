@@ -21,7 +21,7 @@ module Lastfm
     end
 
     def connection
-      @connection ||= Connection.new(query)
+      @connection ||= Connection.new(user)
     end
 
     def first_page
@@ -36,10 +36,6 @@ module Lastfm
 
     def pages
       [first_page, other_pages].flatten
-    end
-
-    def query
-      @_query ||= Query.new(user: user)
     end
 
     def recent_tracks

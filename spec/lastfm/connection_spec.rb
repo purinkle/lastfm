@@ -7,7 +7,7 @@ module Lastfm
     describe "#recent_tracks" do
       it "fetches a list of all recently played tracks that match the query" do
         VCR.use_cassette("recent_tracks/page_2") do
-          connection = Connection.new(Query.new(user: "TEST_USER"))
+          connection = Connection.new("TEST_USER")
 
           from = Time.new(2016, 11, 16, 17, 19, 51)
           to = Time.new(2016, 11, 16, 17, 19, 51)
@@ -28,7 +28,7 @@ module Lastfm
       context "when we omit a page number" do
         it "defaults to the first page" do
           VCR.use_cassette("recent_tracks/one") do
-            connection = Connection.new(Query.new(user: "TEST_USER"))
+            connection = Connection.new("TEST_USER")
 
             from = Time.new(2016, 11, 16, 17, 19, 51)
             to = Time.new(2016, 11, 16, 17, 19, 51)

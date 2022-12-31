@@ -2,8 +2,8 @@
 
 module Lastfm
   class Connection
-    def initialize(query)
-      @query = query
+    def initialize(username)
+      @username = username
     end
 
     def recent_tracks(period, page_number = 1)
@@ -16,7 +16,7 @@ module Lastfm
 
     private
 
-    attr_reader :adapter, :query
+    attr_reader :adapter
 
     def connection
       Faraday.new(url: "http://ws.audioscrobbler.com") do |faraday|
@@ -35,16 +35,12 @@ module Lastfm
         method: "user.getrecenttracks",
         page: page,
         to: to,
-        user: user
+        user: @username
       )
     end
 
     def response_body(page:, from:, to:)
       response(page: page, from: from, to: to).body
-    end
-
-    def user
-      query.user
     end
   end
 end
