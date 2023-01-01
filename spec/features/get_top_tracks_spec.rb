@@ -9,7 +9,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER"
+          username: "TEST_USER"
         )
 
         expect(chart.get).to be_empty
@@ -23,7 +23,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER"
+          username: "TEST_USER"
         )
         entries = chart.get
         entry = entries.first
@@ -42,7 +42,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER"
+          username: "TEST_USER"
         )
         entries = chart.get
         entry = entries.first
@@ -61,7 +61,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER"
+          username: "TEST_USER"
         )
         entries = chart.get
 
@@ -85,7 +85,7 @@ RSpec.describe "Get Top Tracks" do
           chart = Lastfm::Chart.new(
             from: Time.at(1_479_316_791),
             to: Time.at(1_479_316_791),
-            user: "TEST_USER"
+            username: "TEST_USER"
           )
           entries = chart.get
 
@@ -109,7 +109,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER"
+          username: "TEST_USER"
         )
 
         entries = chart.get
@@ -129,7 +129,7 @@ RSpec.describe "Get Top Tracks" do
         chart = Lastfm::Chart.new(
           from: Time.at(1_479_316_791),
           to: Time.at(1_479_316_791),
-          user: "TEST_USER"
+          username: "TEST_USER"
         )
 
         entries = chart.get

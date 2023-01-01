@@ -4,11 +4,11 @@ require "spec_helper"
 
 module Lastfm
   RSpec.describe Query do
-    describe "#user" do
-      it "is the initialized user" do
-        user = "TEST_USER"
+    describe "#username" do
+      it "is the initialized username" do
+        username = "TEST_USER"
 
-        expect(Query.new(user: user).user).to eq user
+        expect(Query.new(username: username).username).to eq username
       end
     end
   end

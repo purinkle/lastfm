@@ -2,10 +2,10 @@
 
 module Lastfm
   class Query
-    attr_reader :user
+    attr_reader :username
 
-    def initialize(user:)
-      @user = user
+    def initialize(username:)
+      @username = username
     end
   end
 end

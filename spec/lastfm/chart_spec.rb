@@ -13,7 +13,7 @@ module Lastfm
         response_2 = instance_double("RecentTrackList", total_pages: 2)
         recent_tracks = instance_double("RecentTracks", to_chart: chart)
         to = Time.now
-        user = "TEST_USER"
+        username = "TEST_USER"
         allow(connection).to receive(:recent_tracks).with(from..to)
           .and_return(response_1)
         allow(Connection).to receive(:new).once.with("TEST_USER")
@@ -27,7 +27,8 @@ module Lastfm
           ]
         ).and_return(recent_tracks)
 
-        expect(Chart.new(from: from, to: to, user: user).get).to eq chart
+        expect(Chart.new(from: from, to: to, username: username).get)
+          .to eq chart
       end
     end
   end

@@ -2,10 +2,10 @@
 
 module Lastfm
   class Chart
-    def initialize(from:, to:, user:)
+    def initialize(from:, to:, username:)
       @from = from
       @to = to
-      @user = user
+      @username = username
     end
 
     def get
@@ -14,14 +14,14 @@ module Lastfm
 
     private
 
-    attr_reader :from, :to, :user
+    attr_reader :from, :to, :username
 
     def adapted_response
       @_adapted_response ||= connection.recent_tracks(from..to)
     end
 
     def connection
-      @connection ||= Connection.new(user)
+      @connection ||= Connection.new(username)
     end
 
     def first_page
