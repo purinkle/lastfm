@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Lastfm
-  class Connection
+  class User
     def initialize(username)
       @username = username
     end
