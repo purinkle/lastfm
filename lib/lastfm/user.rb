@@ -16,8 +16,6 @@ module Lastfm
 
     private
 
-    attr_reader :adapter
-
     def connection
       Faraday.new(url: "http://ws.audioscrobbler.com") do |faraday|
         faraday.response :json
