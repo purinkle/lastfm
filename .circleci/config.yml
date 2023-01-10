@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/lastfm
     docker:
-      - image: circleci/ruby:2.6.1
+      - image: cimg/ruby:2.6.1
     steps:
       - checkout
 
