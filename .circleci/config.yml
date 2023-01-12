@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/lastfm
     docker:
-      - image: cimg/ruby:2.6.10
+      - image: cimg/ruby:2.7.7
     steps:
       - checkout
 
