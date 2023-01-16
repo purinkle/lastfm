@@ -1,7 +1,17 @@
+# frozen_string_literal: true
+
 module Lastfm
   class HttpClient
+    REQUEST_PARAMS = {
+      api_key: ENV.fetch("API_KEY"),
+      format: "json",
+      limit: 200,
+      method: "user.getrecenttracks"
+    }
+    URL = "http://ws.audioscrobbler.com/2.0/"
+
     def self.null(response_body)
-      new(StubbedConnection.new(response_body))
+      new(StubbedFaraday.new(response_body))
     end
 
     def initialize(connection = nil)
@@ -15,7 +25,7 @@ module Lastfm
     private
 
     def build_connection
-      Faraday.new(url: "http://ws.audioscrobbler.com") do |faraday|
+      Faraday.new do |faraday|
         faraday.response :json
         faraday.adapter Faraday.default_adapter
       end
@@ -26,17 +36,10 @@ module Lastfm
     end
 
     def response(query_params)
-      @connection.get(
-        "/2.0/",
-        api_key: ENV["API_KEY"],
-        format: "json",
-        limit: 200,
-        method: "user.getrecenttracks",
-        **query_params
-      )
+      @connection.get(URL, **REQUEST_PARAMS, **query_params)
     end
 
-    class StubbedConnection
+    class StubbedFaraday
       def initialize(response_body)
         @response = StubbedResponse.new(response_body)
       end
@@ -45,13 +48,7 @@ module Lastfm
         @response
       end
 
-      class StubbedResponse
-        attr_reader :body
-
-        def initialize(body)
-          @body = body
-        end
-      end
+      StubbedResponse = Struct.new(:body)
     end
   end
 end
