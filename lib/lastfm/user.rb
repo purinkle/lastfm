@@ -2,6 +2,13 @@
 
 module Lastfm
   class User
+    BASE_PARAMS = {
+      api_key: ENV.fetch("API_KEY"),
+      method: "user.getrecenttracks",
+      format: "json",
+      limit: 200
+    }.freeze
+
     def initialize(username)
       @username = username
     end
@@ -26,11 +33,8 @@ module Lastfm
     def response(page:, from:, to:)
       connection.get(
         "/2.0/",
-        api_key: ENV["API_KEY"],
-        format: "json",
+        **BASE_PARAMS,
         from: from,
-        limit: 200,
-        method: "user.getrecenttracks",
         page: page,
         to: to,
         user: @username
