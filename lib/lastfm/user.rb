@@ -9,8 +9,9 @@ module Lastfm
       limit: 200
     }.freeze
 
-    def initialize(username)
+    def initialize(username, connection = build_connection)
       @username = username
+      @connection = connection
     end
 
     def recent_tracks(period, page_number = 1)
@@ -23,7 +24,7 @@ module Lastfm
 
     private
 
-    def connection
+    def build_connection
       Faraday.new(url: "http://ws.audioscrobbler.com") do |faraday|
         faraday.response :json
         faraday.adapter Faraday.default_adapter
@@ -31,7 +32,7 @@ module Lastfm
     end
 
     def response(page:, from:, to:)
-      connection.get(
+      @connection.get(
         "/2.0/",
         **BASE_PARAMS,
         from: from,
