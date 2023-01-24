@@ -9,9 +9,9 @@ module Lastfm
       limit: 200
     }.freeze
 
-    def initialize(username, connection = build_connection)
+    def initialize(username)
       @username = username
-      @connection = connection
+      @connection = build_connection
     end
 
     def recent_tracks(period, page_number = 1)
