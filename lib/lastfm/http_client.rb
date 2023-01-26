@@ -9,6 +9,10 @@ module Lastfm
       limit: 200
     }.freeze
 
+    def self.null(response_bodies = {})
+      new(StubbedConnection.new(response_bodies))
+    end
+
     def initialize(connection = build_connection)
       @connection = connection
     end
@@ -32,6 +36,25 @@ module Lastfm
 
     def response_body(params)
       response(params).body
+    end
+
+    class StubbedConnection
+      def initialize(response_bodies)
+        @response_bodies = response_bodies
+      end
+
+      def get(url, params)
+        response_body = @response_bodies.fetch(
+          params.except(*BASE_PARAMS.keys),
+          {}
+        )
+
+        StubbedResponse.new(response_body)
+      end
+
+      private
+
+      StubbedResponse = Struct.new(:body)
     end
   end
 end

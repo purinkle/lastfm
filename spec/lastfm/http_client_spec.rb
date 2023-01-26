@@ -38,6 +38,32 @@ module Lastfm
           )
         end
       end
+
+      context "when nulled without a configuration" do
+        it "returns the default response" do
+          http_client = Lastfm::HttpClient.null
+          stub_const("ExampleEntity", example_entity)
+
+          response = http_client.get(ExampleEntity, foo: "bar")
+
+          expect(response).to eq ExampleEntity.new({})
+        end
+      end
+
+      context "when nulled with a configuration" do
+        it "returns the correct response" do
+          response_bodies = {
+            {foo: "bar"} => "TEST_CORRECT_RESPONSE",
+            {baz: "qux"} => "TEST_INCORRECT_RESPONSE"
+          }
+          http_client = Lastfm::HttpClient.null(response_bodies)
+          stub_const("ExampleEntity", example_entity)
+
+          response = http_client.get(ExampleEntity, foo: "bar")
+
+          expect(response).to eq ExampleEntity.new("TEST_CORRECT_RESPONSE")
+        end
+      end
     end
 
     def example_entity
