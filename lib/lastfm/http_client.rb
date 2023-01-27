@@ -9,8 +9,8 @@ module Lastfm
       limit: 200
     }.freeze
 
-    def initialize
-      @connection = build_connection
+    def initialize(connection = build_connection)
+      @connection = connection
     end
 
     def get(entity, params)
