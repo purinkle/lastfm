@@ -46,6 +46,52 @@ module Lastfm
           end
         end
       end
+
+      context "when nulled without a configuration" do
+        it "returns the default recent track list" do
+          user = User.null("TEST_USER")
+
+          from = Time.new(2016, 11, 16, 17, 19, 51)
+          to = Time.new(2016, 11, 16, 17, 19, 51)
+          recent_tracks = user.recent_tracks(from..to)
+
+          expect(recent_tracks).to eq RecentTrackList.build(
+            tracks: [],
+            total_pages: 1
+          )
+        end
+      end
+
+      context "when nulled with a configuration" do
+        it "returns the correct response" do
+          from = Time.new(2016, 11, 16, 17, 19, 51)
+          to = Time.new(2016, 11, 16, 17, 19, 51)
+          recent_track_lists = {
+            {period: (from..to)} => RecentTrackList.build(
+              tracks: [
+                {
+                  artist_name: "TEST_ARTIST",
+                  track_name: "TEST_TRACK"
+                }
+              ],
+              total_pages: 1
+            )
+          }
+          user = User.null("TEST_USER", recent_track_lists)
+
+          recent_tracks = user.recent_tracks(from..to)
+
+          expect(recent_tracks).to eq RecentTrackList.build(
+            tracks: [
+              {
+                artist_name: "TEST_ARTIST",
+                track_name: "TEST_TRACK"
+              }
+            ],
+            total_pages: 1
+          )
+        end
+      end
     end
   end
 end
