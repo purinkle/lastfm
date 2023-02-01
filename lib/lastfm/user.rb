@@ -2,6 +2,19 @@
 
 module Lastfm
   class User
+    def self.null(username, recent_track_lists = {})
+      response_bodies = recent_track_lists.transform_keys do |key|
+        {
+          user: username,
+          page: key.fetch(:page_number, 1),
+          from: key[:period].min.to_i,
+          to: key[:period].max.to_i
+        }
+      end
+
+      new(username, HttpClient.null(response_bodies))
+    end
+
     def initialize(username, http_client = HttpClient.new)
       @username = username
       @http_client = http_client
