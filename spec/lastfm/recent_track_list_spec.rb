@@ -61,6 +61,34 @@ module Lastfm
       end
     end
 
+    describe "#to_h" do
+      it "returns a hash representation of the instance" do
+        recent_track_list = RecentTrackList.build(
+          tracks: [
+            {
+              artist_name: "TEST_ARTIST",
+              track_name: "TEST_TRACK"
+            }
+          ],
+          total_pages: "1"
+        )
+
+        to_h = recent_track_list.to_h
+
+        expect(to_h).to eq(
+          "recenttracks" => {
+            "track" => [
+              {
+                "artist" => {"#text" => "TEST_ARTIST"},
+                "name" => "TEST_TRACK"
+              }
+            ],
+            "@attr" => {"totalPages" => "1"}
+          }
+        )
+      end
+    end
+
     describe "#total_pages" do
       it "returns the total number of pages" do
         total_pages = "0"

@@ -24,6 +24,10 @@ module Lastfm
       tracks == other.tracks && total_pages == other.total_pages
     end
 
+    def to_h
+      @data
+    end
+
     def total_pages
       attributes.fetch("totalPages").to_i
     end
