@@ -23,7 +23,12 @@ module Lastfm
 
           response = http_client.get(ExampleEntity, foo: "bar")
 
-          expect(response).to eq ExampleEntity.new({})
+          expect(response).to eq ExampleEntity.new(
+            "recenttracks" => {
+              "track" => [],
+              "@attr" => {"totalPages" => 1}
+            }
+          )
         end
       end
 

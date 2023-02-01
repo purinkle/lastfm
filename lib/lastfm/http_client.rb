@@ -46,7 +46,12 @@ module Lastfm
       def get(url, params)
         response_body = @response_bodies.fetch(
           params.except(*BASE_PARAMS.keys),
-          {}
+          {
+            "recenttracks" => {
+              "track" => [],
+              "@attr" => {"totalPages" => 1}
+            }
+          }
         )
 
         StubbedResponse.new(response_body)
