@@ -10,7 +10,7 @@ module Lastfm
     }.freeze
 
     def self.null(response_bodies = {})
-      new(StubbedConnection.new(response_bodies))
+      new(StubbedConnection.new(response_bodies.transform_values(&:to_h)))
     end
 
     def initialize(connection = build_connection)

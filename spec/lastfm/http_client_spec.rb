@@ -34,16 +34,16 @@ module Lastfm
 
       context "when nulled with a configuration" do
         it "returns the correct response" do
+          stub_const("ExampleEntity", example_entity)
           response_bodies = {
-            {foo: "bar"} => "TEST_CORRECT_RESPONSE",
-            {baz: "qux"} => "TEST_INCORRECT_RESPONSE"
+            {foo: "bar"} => ExampleEntity.new("data" => "correct"),
+            {baz: "qux"} => ExampleEntity.new("data" => "incorrect")
           }
           http_client = Lastfm::HttpClient.null(response_bodies)
-          stub_const("ExampleEntity", example_entity)
 
           response = http_client.get(ExampleEntity, foo: "bar")
 
-          expect(response).to eq ExampleEntity.new("TEST_CORRECT_RESPONSE")
+          expect(response).to eq ExampleEntity.new("data" => "correct")
         end
       end
     end
@@ -58,6 +58,10 @@ module Lastfm
 
         def ==(other)
           response_body == other.response_body
+        end
+
+        def to_h
+          response_body
         end
       end
     end
