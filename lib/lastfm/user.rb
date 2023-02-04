@@ -2,9 +2,9 @@
 
 module Lastfm
   class User
-    def initialize(username)
+    def initialize(username, http_client = HttpClient.new)
       @username = username
-      @http_client = HttpClient.new
+      @http_client = http_client
     end
 
     def recent_tracks(period, page_number = 1)
